@@ -22,8 +22,8 @@ void odomCallback(const nav_msgs::Odometry& msg){
 	pos.pose.pose.position.x=msg.pose.pose.position.x;
 	pos.pose.pose.position.y=msg.pose.pose.position.y;
 	
-	delta_pos.pose.pose.position.x=msg.pose.pose.position.x-past_pos.pose.pose.position.x;
-	delta_pos.pose.pose.position.y=msg.pose.pose.position.y-past_pos.pose.pose.position.y;
+	delta_pos.pose.pose.position.x=pos.pose.pose.position.x-past_pos.pose.pose.position.x;
+	delta_pos.pose.pose.position.y=pos.pose.pose.position.y-past_pos.pose.pose.position.y;
 	
 	past_pos.pose.pose.position.x = msg.pose.pose.position.x;
 	past_pos.pose.pose.position.y = msg.pose.pose.position.y;
