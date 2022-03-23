@@ -12,12 +12,12 @@ std_msgs::Bool flag_AEB;
 geometry_msgs::Twist cmd_vel_msg;
 std_msgs::Float32 delta_range;
 std_msgs::Float32 old_sonar_range;
-nav_msgs::Odometry delta_pos,past_pos, pos,vel;
+nav_msgs::Odometry delta_pos,past_pos,pos;
+geometry_msgs::Twist vel;
 
 
 void odomCallback(const nav_msgs::Odometry& msg){
-	
-	
+		
 	//ROS_INFO("%.2f %.2f",msg.pose.pose.position.x, msg.pose.pose.position.y);
 	pos.pose.pose.position.x=msg.pose.pose.position.x;
 	pos.pose.pose.position.y=msg.pose.pose.position.y;
@@ -27,12 +27,11 @@ void odomCallback(const nav_msgs::Odometry& msg){
 	
 	past_pos.pose.pose.position.x = msg.pose.pose.position.x;
 	past_pos.pose.pose.position.y = msg.pose.pose.position.y;
-	
-	vel.twist.twist.linear.x=delta_pos.pose.pose.position.x/0.02; // 50 => 1/50=0.02
-	vel.twist.twist.linear.y=delta_pos.pose.pose.position.y/0.02; // 50 => 1/50=0.02
-	
-	ROS_INFO("vx= [%f] , vy= [%f]",vel.twist.twist.linear.x,vel.twist.twist.linear.y);
-	
+
+	vel.linear.x=delta_pos.pose.pose.position.x/0.02; // 50 => 1/50=0.02
+	vel.linear.y=delta_pos.pose.pose.position.y/0.02; // 50 => 1/50=0.02
+		
+	ROS_INFO("vx= [%f] , vy= [%f]",vel.linear.x,vel.linear.y);	
 	}
 
 
